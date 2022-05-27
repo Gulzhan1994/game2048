@@ -48,8 +48,8 @@ class Board {
         const fragment = document.createDocumentFragment();
         for(let i = 0; i < this.width * this.width; i++) {
             const square = document.createElement('div');
-            square.innerHTML = '';
-            square.className = 'cell';
+            square.innerHTML = '2';
+            square.className = 'grid-cell';
             fragment.appendChild(square);
             squares.push(square);
         }
