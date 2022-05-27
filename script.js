@@ -42,13 +42,13 @@ class Board {
     constructor() {
         this.widthBoard = 4;
         this.squares = [];
-        this.wrapper = document.querySelector('.grid');
+        this.wrapper = document.querySelector('.wrapper');
     }
     init() {
         const fragment = document.createDocumentFragment();
         for(let i = 0; i < this.width * this.width; i++) {
-            const square = document.createElement('div');
-            square.innerHTML = 2;
+            let square = document.createElement('div');
+            square.innerHTML = '';
             square.className = 'cell';
             fragment.appendChild(square);
             squares.push(square);
@@ -68,7 +68,6 @@ class GameManager {
         this.score = 0;
         this.isGameOver = false;
         this.board = null;
-
     }
     init() {
         this.board = new Board();
@@ -81,7 +80,6 @@ class GameManager {
 
 const gameStart = new GameManager();
 gameStart.init();
-
 
 
 class Cell {
