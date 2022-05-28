@@ -4,8 +4,6 @@
 // одинаковые цифры суммируя свои значения превращается в одну;
 // Если в игровой поле невозможно совершить ход то тогда игра закончиться с поражением и выйдет окно с сообщением что Вы проиграли!
 
-
-
 const scoreDisplay = document.querySelector('.score');
 const resultDisplay = document.querySelector('.result');
 const colorCell = [
@@ -23,8 +21,6 @@ const colorCell = [
     '#d7d4f0',
 ];
 
-document.addEventListener('keyup', clickControl);
-
 function clickControl(event) {
     console.log(event.key);
     if(event.key === 'ArrowUp') {
@@ -37,6 +33,9 @@ function clickControl(event) {
         console.log('нажата кнопка стрелка налево');
     }
 }
+
+
+document.addEventListener('keyup', clickControl);
 
 class Board {
     constructor() {
