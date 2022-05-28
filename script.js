@@ -46,7 +46,7 @@ class Board {
     }
     init() {
         const fragment = document.createDocumentFragment();
-        for(let i = 0; i < this.width * this.width; i++) {
+        for(let i = 0; i < this.width * this.weidth; i++) {
             let square = document.createElement('div');
             square.innerHTML = '';
             square.className = 'cell';
@@ -59,8 +59,11 @@ class Board {
 
     }
     addColours() {
-
+        this.squares.forEach(function(square) {
+            square[i].style.backgroundColor = colorCell[i];
+        })
     }
+    
 }
 
 class GameManager {
