@@ -77,8 +77,10 @@ header > div {
     margin: 2vmin 2vmin 0 0;
     background-color: #C5C6BE;
     float: left;
-}
+} 
+
 /* add left margin to first childs of rows */
+
 .cell:nth-child(4n+1) {
     margin-left: 2vmin;
 }
@@ -93,4 +95,5 @@ header > div {
     line-height: 15vmin;
     color: #776e65;
     transition: all .3s;
-}
+} 
+
