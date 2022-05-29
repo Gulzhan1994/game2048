@@ -1,8 +1,8 @@
-// Нажимаем кнопку страт или новая игра
-// В поле появляется цифры две цифры одинаковые;
-// с помощью нажатием кнопки (право и влево, вверх и вниз) перемещаем цифры в поле игры;
-// одинаковые цифры суммируя свои значения превращается в одну;
-// Если в игровой поле невозможно совершить ход то тогда игра закончиться с поражением и выйдет окно с сообщением что Вы проиграли!
+// // Нажимаем кнопку страт или новая игра
+// // В поле появляется цифры две цифры одинаковые;
+// // с помощью нажатием кнопки (право и влево, вверх и вниз) перемещаем цифры в поле игры;
+// // одинаковые цифры суммируя свои значения превращается в одну;
+// // Если в игровой поле невозможно совершить ход то тогда игра закончиться с поражением и выйдет окно с сообщением что Вы проиграли!
 
 const scoreDisplay = document.querySelector('.score');
 const resultDisplay = document.querySelector('.result');
@@ -34,8 +34,8 @@ function clickControl(event) {
     }
 }
 
-
 document.addEventListener('keyup', clickControl);
+
 
 class Board {
     constructor() {
@@ -45,25 +45,32 @@ class Board {
     }
     init() {
         const fragment = document.createDocumentFragment();
-        for(let i = 0; i < this.width * this.weidth; i++) {
+        for(let i = 0; i < this.widthBoard * this.widthBoard; i++) {
             let square = document.createElement('div');
             square.innerHTML = '';
-            square.className = 'cell';
+            square.className = 'grid-cell';
             fragment.appendChild(square);
-            squares.push(square);
+            this.squares.push(square);
         }
         this.wrapper.appendChild(fragment);
+        
     }
     generateNewCell() {
+        const randomNumber = Math.floor(Math.random() * this.squares.length);
 
+        if (this.squares[randomNumber].innerHTML === '') {
+            this.squares[randomNumber].innerHTML = 2;
+            addColours();
+            // проверить на GameOver
+        } 
     }
     addColours() {
-        this.squares.forEach(function(square) {
-            square[i].style.backgroundColor = colorCell[i];
-        })
+        for (let i = 0; i < this.squares; i++) {
+            this.squares[i].style.backgroundColor = colorCell[Math.trunc(Math.sqrt(this.squares[i].innerHTML))];
+        }
     }
-    
 }
+
 
 class GameManager {
     constructor() {
@@ -76,7 +83,6 @@ class GameManager {
         document.addEventListener('keyup', clickControl);
     }
     checkIsGameOver() {
-        console.log(checkIsGameOver());
     }
 }
 
@@ -99,3 +105,17 @@ class Cell {
         console.log(getNewElement());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
