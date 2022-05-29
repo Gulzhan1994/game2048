@@ -29,47 +29,12 @@ function clickControl(event) {
         console.log('нажата кнопка стрелка вниз');
     } else if(event.key === 'ArrowRight') {
         console.log('нажата кнопка стрелка направо');
-    } else {
+    } else if(event.key === 'ArrowLeft') {
         console.log('нажата кнопка стрелка налево');
     }
 }
 
 document.addEventListener('keyup', clickControl);
-
-
-class Board {
-    constructor() {
-        this.widthBoard = 4;
-        this.squares = [];
-        this.wrapper = document.querySelector('.wrapper');
-    }
-    init() {
-        const fragment = document.createDocumentFragment();
-        for(let i = 0; i < this.widthBoard * this.widthBoard; i++) {
-            let square = document.createElement('div');
-            square.innerHTML = '';
-            square.className = 'grid-cell';
-            fragment.appendChild(square);
-            this.squares.push(square);
-        }
-        this.wrapper.appendChild(fragment);
-        
-    }
-    generateNewCell() {
-        const randomNumber = Math.floor(Math.random() * this.squares.length);
-
-        if (this.squares[randomNumber].innerHTML === '') {
-            this.squares[randomNumber].innerHTML = 2;
-            addColours();
-            // проверить на GameOver
-        } 
-    }
-    addColours() {
-        for (let i = 0; i < this.squares; i++) {
-            this.squares[i].style.backgroundColor = colorCell[Math.trunc(Math.sqrt(this.squares[i].innerHTML))];
-        }
-    }
-}
 
 
 class GameManager {
@@ -80,14 +45,14 @@ class GameManager {
     }
     init() {
         this.board = new Board();
+        this.board.init();
+        this.board.generateNewCell();
         document.addEventListener('keyup', clickControl);
     }
     checkIsGameOver() {
     }
-}
 
-const gameStart = new GameManager();
-gameStart.init();
+}
 
 
 class Cell {
@@ -102,9 +67,55 @@ class Cell {
         console.log(setValue());
     }
     getNewElement() {
-        console.log(getNewElement());
+        let square = document.createElement('div');
+        square.innerHTML = '';
+        square.className = 'cell';
+        this.dom = square;
+
+        return square;
+
     }
 }
+
+
+class Board {
+    constructor() {
+        this.widthBoard = 4;
+        this.squares = [];
+        this.wrapper = document.querySelector('.wrapper');
+    }
+    init() {
+        const grid = document.querySelector('.grid');
+        for(let i = 0; i < this.widthBoard * this.widthBoard; i++) {
+            const cell = new Cell();
+            grid.appendChild(cell.getNewElement());
+            this.squares.push(cell);
+        }
+        this.wrapper.appendChild(grid);
+
+    }
+    generateNewCell() {
+        const randomNumber = Math.floor(Math.random() * this.squares.length);
+
+        if (this.squares[randomNumber].innerHTML === '') {
+            this.squares[randomNumber].innerHTML = 2;
+            addColours();
+            // проверить на GameOver
+        } 
+    }
+    addColours() {
+        this.squares.forEach(function(square) {
+            square.style.backgroundColor = colorCell[i];
+        })
+    }
+}
+
+
+const gameStart = new GameManager();
+gameStart.init();
+
+
+
 
 
 
