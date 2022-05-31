@@ -36,7 +36,7 @@ function clickControl(event) {
 
 document.addEventListener('keyup', clickControl);
 
-
+// GameManager отвечает за общую игровую логику, начать игру, проследить не окончена ли игра, есть ли победитель и подобная логика
 class GameManager {
     constructor() {
         this.score = 0;
@@ -46,7 +46,10 @@ class GameManager {
     init() {
         this.board = new Board();
         this.board.init();
+
         this.board.generateNewCell();
+        this.board.generateNewCell();
+        
         document.addEventListener('keyup', clickControl);
     }
     checkIsGameOver() {
@@ -54,7 +57,7 @@ class GameManager {
 
 }
 
-
+// класс отвечает за отдельную ячейку, её значение, цвет и ссылку на DOM элемент.
 class Cell {
     constructor() {
         this.value = '';
@@ -63,21 +66,20 @@ class Cell {
     getValue() { 
         return this.value;
     }
-    setValue() {
-        console.log(setValue());
+    setValue(value) {
+        this.dom.textContent = value;
+        this.value = value;
     }
     getNewElement() {
         let square = document.createElement('div');
         square.innerHTML = '';
         square.className = 'cell';
         this.dom = square;
-
         return square;
-
     }
 }
 
-
+// класс отвечает за игровое поле, создание новых ячеек на поле, логику объединения ячеек при клике на клавиши.
 class Board {
     constructor() {
         this.widthBoard = 4;
@@ -93,19 +95,20 @@ class Board {
         }
         this.wrapper.appendChild(grid);
 
+
     }
     generateNewCell() {
         const randomNumber = Math.floor(Math.random() * this.squares.length);
 
-        if (this.squares[randomNumber].innerHTML === '') {
-            this.squares[randomNumber].innerHTML = 2;
-            addColours();
-            // проверить на GameOver
+        if (this.squares[randomNumber].getValue() === '') {
+            this.squares[randomNumber].setValue(2);
+
+            this.addColours();
         } 
     }
-    addColours() {
+    addColours() {  // функция будет добавлять цвет ячейкам на поле
         this.squares.forEach(function(square) {
-            square.style.backgroundColor = colorCell[i];
+            square.dom.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(square.getValue()))];
         })
     }
 }
