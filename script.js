@@ -6,7 +6,6 @@
 
 
 import Board from './board.js';
-import Cell from './cell.js';
 
 
 function clickControl(event) {
@@ -45,10 +44,6 @@ class GameManager {
 
 }
 
-// класс Cell отвечает за отдельную ячейку, её значение, цвет и ссылку на DOM элемент.
-const importCell = new Cell();
-
-// класс Board отвечает за игровое поле, создание новых ячеек на поле, логику объединения ячеек при клике на клавиши.
 const importBoard = new Board();
 
 const gameStart = new GameManager();

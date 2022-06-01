@@ -1,3 +1,4 @@
+// класс Cell отвечает за отдельную ячейку, её значение, цвет и ссылку на DOM элемент.
 export default class Cell {
     constructor() {
         this.value = '';

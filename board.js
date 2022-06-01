@@ -15,6 +15,8 @@ export const colorCell = [
     '#d7d4f0',
 ];
 
+// класс Board отвечает за игровое поле, создание новых ячеек на поле, логику объединения ячеек при клике на клавиши.
+
 export default class Board {
     constructor() {
         this.widthBoard = 4;
