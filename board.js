@@ -1,3 +1,5 @@
+import Cell from './cell.js';
+
 export const scoreDisplay = document.querySelector('.score');
 export const resultDisplay = document.querySelector('.result');
 export const colorCell = [
@@ -50,4 +52,3 @@ export default class Board {
     }
 }
 
-import Cell from './cell.js';
