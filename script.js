@@ -8,21 +8,6 @@
 import Board from './board.js';
 
 
-function clickControl(event) {
-    console.log(event.key);
-    if(event.key === 'ArrowUp') {
-        console.log('нажата кнопка стрелка вверх');
-    } else if(event.key === 'ArrowDown') {
-        console.log('нажата кнопка стрелка вниз');
-    } else if(event.key === 'ArrowRight') {
-        console.log('нажата кнопка стрелка направо');
-    } else if(event.key === 'ArrowLeft') {
-        console.log('нажата кнопка стрелка налево');
-    }
-}
-
-document.addEventListener('keyup', clickControl);
-
 // GameManager отвечает за общую игровую логику, начать игру, проследить не окончена ли игра, есть ли победитель и подобная логика
 class GameManager {
     constructor() {
@@ -33,13 +18,31 @@ class GameManager {
     init() {
         this.board = importBoard;
         this.board.init();
-
         this.board.generateNewCell();
         this.board.generateNewCell();
-        
-        document.addEventListener('keyup', clickControl);
+        document.addEventListener('keyup', this.clickControl.bind(this));
     }
     checkIsGameOver() {
+    }
+    clickControl(event) {
+        console.log(event.key);
+        if(event.key === 'ArrowUp') {
+            this.board.movingColumn();
+            this.board.combineColumn();
+            this.board.generateNewCell();
+        } else if(event.key === 'ArrowDown') {
+            this.board.movingColumn();
+            this.board.combineColumn();
+            this.board.generateNewCell();
+        } else if(event.key === 'ArrowRight') {
+            this.board.movingRow();
+            this.board.combineRow();
+            this.board.generateNewCell();
+        } else if(event.key === 'ArrowLeft') {
+            this.board.movingRow();
+            this.board.combineRow();
+            this.board.generateNewCell();
+        }
     }
 
 }
