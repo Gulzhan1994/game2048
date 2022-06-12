@@ -19,14 +19,17 @@ export default class Cell {
         this.value = '';
         this.dom = null;
     }
+
     getValue() { 
         return this.value;
     }
+
     setValue(value) {
         this.dom.textContent = value;
         this.value = value;
         this.dom.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(value))];
     }
+
     getNewElement() {
         const square = document.createElement('div');
         square.innerHTML = '';
