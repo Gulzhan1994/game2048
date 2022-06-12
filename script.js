@@ -23,10 +23,13 @@ class GameManager {
         document.addEventListener('keyup', this.clickControl.bind(this));
     }
     checkIsGameOver() {
-        
+        console.log(checkIsGameOver);
     }
     clickControl(event) {
         if(event.key === 'ArrowUp') {
+            this.board.movingColumn();
+            this.board.combineColumn();
+            this.board.generateNewCell();
         } else if(event.key === 'ArrowDown') {
             this.board.movingColumn();
             this.board.combineColumn();

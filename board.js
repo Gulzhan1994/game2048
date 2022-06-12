@@ -41,12 +41,9 @@ export default class Board {
         for (let i = 0; i < this.widthBoard; i++) {
             column.push(this.squares[indexColumn + this.widthBoard * i ].getValue());
         }
-    
         let filteredColumn = column.filter(num => num);
         let emptyCellInColumnSize = this.widthBoard - filteredColumn.length;
-    
         let newColumn = this.makeNewSequence(filteredColumn, emptyCellInColumnSize, isUp);
-
         newColumn.forEach((value, i) => {
             this.squares[indexColumn + (this.widthBoard * i)].setValue(value);
         });
