@@ -14,20 +14,22 @@ export const colorCell = [
     '#d7d4f0',
 ];
 
-
 export default class Cell {
     constructor() {
         this.value = '';
         this.dom = null;
     }
+
     getValue() { 
         return this.value;
     }
+
     setValue(value) {
         this.dom.textContent = value;
         this.value = value;
         this.dom.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(value))];
     }
+
     getNewElement() {
         const square = document.createElement('div');
         square.innerHTML = '';
