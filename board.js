@@ -2,20 +2,7 @@ import Cell from './cell.js';
 
 export const scoreDisplay = document.querySelector('.score');
 export const resultDisplay = document.querySelector('.result');
-export const colorCell = [
-    '#afa192', 
-    '#eee4da', 
-    '#ede0c8', 
-    '#f2b179', 
-    '#ffcea4', 
-    '#e8c064', 
-    '#ffab6e', 
-    '#fd9982', 
-    '#ead79c', 
-    '#76daff', 
-    '#beeaa5', 
-    '#d7d4f0',
-];
+
 
 // класс Board отвечает за игровое поле, создание новых ячеек на поле, логику объединения ячеек при клике на клавиши.
 
@@ -23,35 +10,47 @@ export default class Board {
     constructor() {
         this.widthBoard = 4;
         this.squares = [];
-        this.wrapper = document.querySelector('.wrapper');
+        this.wrapper = document.querySelector('.grid');
     }
     init() {
-        const grid = document.querySelector('.grid');
+        const fragment = document.createDocumentFragment();
         for(let i = 0; i < this.widthBoard * this.widthBoard; i++) {
-            const cell = new Cell();
-            grid.appendChild(cell.getNewElement());
-            this.squares.push(cell);
+            const square = new Cell();
+            fragment.appendChild(square.getNewElement());
+            this.squares.push(square);
         }
-        this.wrapper.appendChild(grid);
+        this.wrapper.appendChild(fragment);
     }
     generateNewCell() {
         const randomNumber = Math.floor(Math.random() * this.squares.length);
 
         if (this.squares[randomNumber].getValue() === '') {
             this.squares[randomNumber].setValue(2);
-
-            this.addColours();
-        } 
-    }
-    addColours() {  // функция будет добавлять цвет ячейкам на поле
-        this.squares.forEach(function(square) {
-            square.dom.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(square.getValue()))];
-        })
+        } else {
+            this.generateNewCell();
+        }
     }
     movingColumn(direction) {
         for (let i = 0; i < this.widthBoard; i++) {
             this.fillColumn(i, direction === 'up', direction === 'down');
         }
+    }
+    fillColumn(indexColumn, isUp) {
+        const column = [];
+    
+        for (let i = 0; i < this.widthBoard; i++) {
+            column.push(this.squares[indexColumn + this.widthBoard * i ].getValue());
+        }
+    
+        let filteredColumn = column.filter(num => num);
+        let emptyCellInColumnSize = this.widthBoard - filteredColumn.length;
+    
+        let newColumn = this.makeNewSequence(filteredColumn, emptyCellInColumnSize, isUp);
+
+        newColumn.forEach((value, i) => {
+            this.squares[indexColumn + (this.widthBoard * i)].setValue(value);
+        });
+        
     }
     movingRow(direction) {
         for (let i = 0; i < this.widthBoard * this.widthBoard; i++) {
@@ -76,22 +75,6 @@ export default class Board {
             this.squares[rowIndex + i].setValue(value);
         });
     }
-    fillColumn(indexColumn, isUp) {
-        const column = [];
-    
-        for (let i = 0; i < this.widthBoard; i++) {
-            column.push(this.squares[indexColumn + this.widthBoard * i ].getValue());
-        }
-    
-        let filteredColumn = column.filter(num => num);
-        let emptyCellInColumnSize = this.widthBoard - filteredColumn.length;
-    
-        let newColumn = this.makeNewSequence(filteredColumn, emptyCellInColumnSize, isUp);
-    
-        newColumn.forEach((value, i) => {
-            this.squares[indexColumn + (this.widthBoard * i)].setValue(value);
-        });
-    }
     makeNewSequence(numbers, emptySequensSize, isReverse) {
         let emptySequence = Array(emptySequensSize).fill('');
     
@@ -105,8 +88,9 @@ export default class Board {
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - this.widthBoard].setValue('');
             }
+
+            this.movingColumn();
         }
-        
         // проверить на выигрыш
     }
     combineRow() {
@@ -118,7 +102,6 @@ export default class Board {
                 this.squares[i - 1].setValue('');
             }
         }
-        
         // проверить на выигрыш
     }
 }
