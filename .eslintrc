@@ -8,6 +8,8 @@
         "max-len": "off", 
         "class-methods-use-this": "off", 
         "no-plusplus": "off", 
-        "radix": "off"
+        "radix": "off",
+        "no-console": "off",
+        "no-multiple-empty-lines": "off"
     }
   }
