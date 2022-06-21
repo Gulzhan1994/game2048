@@ -91,9 +91,11 @@ export default class Board {
                 
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - this.widthBoard].setValue('');
+
+                this.scoreDisplay += combinedTotal;
             }
         }
-        // проверить на выигрыш
+        this.checkForGameOver();
     }
 
     combineRow() {
@@ -103,8 +105,10 @@ export default class Board {
                 
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - 1].setValue('');
+
+                this.scoreDisplay += combinedTotal;
             }
         }
-        // проверить на выигрыш
+        this.checkForGameOver();
     }
 }

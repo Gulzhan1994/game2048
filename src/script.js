@@ -5,7 +5,7 @@
 // // Если в игровой поле невозможно совершить ход то тогда игра закончиться с поражением и выйдет окно с сообщением что Вы проиграли!
 
 // eslint-disable-next-line import/extensions
-import Board from './board.js';
+import Board, { resultDisplay } from './board.js';
 
 // GameManager отвечает за общую игровую логику, начать игру, проследить не окончена ли игра, есть ли победитель и подобная логика
 class GameManager {
@@ -24,7 +24,19 @@ class GameManager {
         document.addEventListener('keyup', this.clickControl.bind(this));
     }
 
-    checkIsGameOver() {
+    checkForGameOver() {
+        const zeros = 0;
+        for (let i = 0; i < this.squares.length; i++) {
+            if (this.squares[i].getValue() == 8) {
+                alert('You win!');
+                document.removeEventListener('keyup', this.clickControl.bind(this));
+            }
+
+            if (zeros === 0) {
+                resultDisplay.innerHTML = 'You lose!';
+                document.removeEventListener('keyup', this.clickControl.bind(this));
+            }
+        }
     }
 
     clickControl(event) {

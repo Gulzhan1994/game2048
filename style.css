@@ -21,6 +21,7 @@ header > div {
     justify-content: space-between;
 }
 .restart-button {
+    cursor: pointer;
     display: flex;
     height: 70px;
     align-items: center;
@@ -39,6 +40,7 @@ header > div {
     color: #f9f6f2;
 }
 .score, .best-result {
+    cursor: pointer;
     position: relative;
     width: 90px;
     margin-right: 10px;
