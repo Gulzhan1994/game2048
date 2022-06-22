@@ -28,8 +28,8 @@ class GameManager {
 
     checkForGameOver() {
         const zeros = 0;
-        for (let i = 0; i < this.squares.length; i++) {
-            if (this.squares[i].getValue() == 8) {
+        for (let i = 0; i < this.board.squares; i++) {
+            if (this.board.squares == 8) {
                 alert('You win!');
                 document.removeEventListener('keyup', this.clickControl.bind(this));
             }
@@ -46,18 +46,22 @@ class GameManager {
             this.board.movingColumn('up');
             this.board.combineColumn();
             this.board.generateNewCell();
+            this.checkForGameOver();
         } else if (event.key === 'ArrowDown') {
             this.board.movingColumn('down');
             this.board.combineColumn();
             this.board.generateNewCell();
+            this.checkForGameOver();
         } else if (event.key === 'ArrowRight') {
             this.board.movingRow('right');
             this.board.combineRow();
             this.board.generateNewCell();
+            this.checkForGameOver();
         } else if (event.key === 'ArrowLeft') {
             this.board.movingRow('left');
             this.board.combineRow();
             this.board.generateNewCell();
+            this.checkForGameOver();
         }
     }
 }

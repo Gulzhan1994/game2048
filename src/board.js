@@ -95,7 +95,6 @@ export default class Board {
                 this.scoreDisplay += combinedTotal;
             }
         }
-        this.checkForGameOver();
     }
 
     combineRow() {
@@ -109,6 +108,5 @@ export default class Board {
                 this.scoreDisplay += combinedTotal;
             }
         }
-        this.checkForGameOver();
     }
 }
