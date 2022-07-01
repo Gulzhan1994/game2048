@@ -13,6 +13,10 @@
         "no-multiple-empty-lines": "off",
         "no-alert": "off",
         "eqeqeq": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "import/no-duplicates": "off",
+        "import/extensions": "off",
+        "no-unused-vars": "off",
+        "prefer-const": "off"
     }
   }

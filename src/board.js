@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/extensions
 import Cell from './cell.js';
 
-export const scoreDisplay = document.querySelector('.score');
-export const resultDisplay = document.querySelector('.result');
+// export const scoreDisplay = document.querySelector('.score');
+// export const resultDisplay = document.querySelector('.result');
 
 // класс Board отвечает за игровое поле, создание новых ячеек на поле, логику объединения ячеек при клике на клавиши.
 
@@ -11,6 +11,8 @@ export default class Board {
         this.widthBoard = 4;
         this.squares = [];
         this.wrapper = document.querySelector('.grid');
+        this.scoreDisplay = document.querySelector('.score');
+        this.resultDisplay = document.querySelector('.result');
     }
 
     init() {
@@ -92,7 +94,7 @@ export default class Board {
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - this.widthBoard].setValue('');
 
-                this.scoreDisplay += combinedTotal;
+                this.scoreDisplay = this.squares[i].getValue() + combinedTotal;
             }
         }
     }
@@ -105,7 +107,7 @@ export default class Board {
                 this.squares[i].setValue(combinedTotal);
                 this.squares[i - 1].setValue('');
 
-                this.scoreDisplay += combinedTotal;
+                this.scoreDisplay = this.squares[i].getValue() + combinedTotal;
             }
         }
     }

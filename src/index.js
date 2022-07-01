@@ -1,4 +1,4 @@
-import '../style.css';
+// import '../style.css';
 
 // // Нажимаем кнопку страт или новая игра
 // // В поле появляется цифры две цифры одинаковые;
@@ -7,7 +7,8 @@ import '../style.css';
 // // Если в игровой поле невозможно совершить ход то тогда игра закончиться с поражением и выйдет окно с сообщением что Вы проиграли!
 
 // eslint-disable-next-line import/extensions
-import Board, { resultDisplay } from './board.js';
+// import { resultDisplay } from './board.js';
+import Board from './board.js';
 
 // GameManager отвечает за общую игровую логику, начать игру, проследить не окончена ли игра, есть ли победитель и подобная логика
 class GameManager {
@@ -26,42 +27,37 @@ class GameManager {
         document.addEventListener('keyup', this.clickControl.bind(this));
     }
 
-    checkForGameOver() {
-        const zeros = 0;
-        for (let i = 0; i < this.board.squares; i++) {
-            if (this.board.squares == 8) {
-                alert('You win!');
-                document.removeEventListener('keyup', this.clickControl.bind(this));
-            }
-
-            if (zeros === ' ') {
-                resultDisplay.innerHTML = 'You lose!';
-                document.removeEventListener('keyup', this.clickControl.bind(this));
-            }
-        }
-    }
-
     clickControl(event) {
         if (event.key === 'ArrowUp') {
             this.board.movingColumn('up');
             this.board.combineColumn();
-            this.board.generateNewCell();
             this.checkForGameOver();
+            this.board.generateNewCell();
         } else if (event.key === 'ArrowDown') {
             this.board.movingColumn('down');
             this.board.combineColumn();
-            this.board.generateNewCell();
             this.checkForGameOver();
+            this.board.generateNewCell();
         } else if (event.key === 'ArrowRight') {
             this.board.movingRow('right');
             this.board.combineRow();
-            this.board.generateNewCell();
             this.checkForGameOver();
+            this.board.generateNewCell();
         } else if (event.key === 'ArrowLeft') {
             this.board.movingRow('left');
             this.board.combineRow();
-            this.board.generateNewCell();
             this.checkForGameOver();
+            this.board.generateNewCell();
+        }
+    }
+
+    checkForGameOver() {
+        let zeros = 0;
+        for (let i = 0; i < this.board.squares.length; i++) {
+            if (this.board.squares[i].getValue() === 8) {
+                alert('You win!');
+                document.removeEventListener('keyup', this.clickControl.bind(this));
+            }
         }
     }
 }
