@@ -19,7 +19,6 @@ class GameManager {
     }
 
     init() {
-        // eslint-disable-next-line no-use-before-define
         this.board = importBoard;
         this.board.init();
         this.board.generateNewCell();
@@ -52,7 +51,6 @@ class GameManager {
     }
 
     checkForGameOver() {
-        let zeros = 0;
         for (let i = 0; i < this.board.squares.length; i++) {
             if (this.board.squares[i].getValue() === 8) {
                 alert('You win!');

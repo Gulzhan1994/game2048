@@ -17,6 +17,7 @@
         "import/no-duplicates": "off",
         "import/extensions": "off",
         "no-unused-vars": "off",
-        "prefer-const": "off"
+        "prefer-const": "off",
+        "no-use-before-define": "off"
     }
   }
