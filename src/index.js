@@ -52,7 +52,7 @@ class GameManager {
 
     checkForGameOver() {
         for (let i = 0; i < this.board.squares.length; i++) {
-            if (this.board.squares[i].getValue() === 8) {
+            if (this.board.squares[i].getValue() === 2048) {
                 alert('You win!');
                 document.removeEventListener('keyup', this.clickControl.bind(this));
             }
