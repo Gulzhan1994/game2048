@@ -5,7 +5,7 @@
 // // Если в игровой поле невозможно совершить ход то тогда игра закончиться с поражением и выйдет окно с сообщением что Вы проиграли!
 
 // eslint-disable-next-line import/extensions
-import Board, { resultDisplay } from './board.js';
+import Board from './board.js';
 
 // GameManager отвечает за общую игровую логику, начать игру, проследить не окончена ли игра, есть ли победитель и подобная логика
 class GameManager {

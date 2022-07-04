@@ -14,6 +14,7 @@ export const colorCell = [
     '#d7d4f0',
 ];
 
+
 export default class Cell {
     constructor() {
         this.value = '';
