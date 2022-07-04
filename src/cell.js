@@ -1,4 +1,4 @@
-// класс Cell отвечает за отдельную ячейку, её значение, цвет и ссылку на DOM элемент.
+
 export const colorCell = [
     '#afa192', 
     '#eee4da', 
@@ -13,7 +13,6 @@ export const colorCell = [
     '#beeaa5', 
     '#d7d4f0',
 ];
-
 
 export default class Cell {
     constructor() {

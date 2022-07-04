@@ -1,10 +1,6 @@
-// eslint-disable-next-line import/extensions
+
 import Cell from './cell.js';
 
-// export const scoreDisplay = document.querySelector('.score');
-// export const resultDisplay = document.querySelector('.result');
-
-// класс Board отвечает за игровое поле, создание новых ячеек на поле, логику объединения ячеек при клике на клавиши.
 
 export default class Board {
     constructor() {
