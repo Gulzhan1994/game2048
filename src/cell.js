@@ -20,6 +20,14 @@ export default class Cell {
         this.dom = null;
     }
 
+    getNewElement() {
+        const square = document.createElement('div');
+        square.innerHTML = '';
+        square.className = 'cell';
+        this.dom = square;
+        return square;
+    }
+
     getValue() { 
         return this.value;
     }
@@ -28,13 +36,5 @@ export default class Cell {
         this.dom.textContent = value;
         this.value = value;
         this.dom.style.backgroundColor = colorCell[Math.trunc(Math.sqrt(value))];
-    }
-
-    getNewElement() {
-        const square = document.createElement('div');
-        square.innerHTML = '';
-        square.className = 'cell';
-        this.dom = square;
-        return square;
     }
 }

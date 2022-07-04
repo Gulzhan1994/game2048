@@ -37,6 +37,14 @@ export default class Board {
         }
     }
 
+    movingRow(direction) {
+        for (let i = 0; i < this.widthBoard * this.widthBoard; i++) {
+            if (i % 4 === 0) {
+                this.fillRow(i, direction === 'left', direction === 'right');
+            }
+        }
+    }
+
     fillColumn(indexColumn, isUp) {
         const column = [];
     
@@ -49,14 +57,6 @@ export default class Board {
         newColumn.forEach((value, i) => {
             this.squares[indexColumn + (this.widthBoard * i)].setValue(value);
         });
-    }
-
-    movingRow(direction) {
-        for (let i = 0; i < this.widthBoard * this.widthBoard; i++) {
-            if (i % 4 === 0) {
-                this.fillRow(i, direction === 'left', direction === 'right');
-            }
-        }
     }
 
     fillRow(rowIndex, isLeft) {
