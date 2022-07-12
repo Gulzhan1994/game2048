@@ -7,8 +7,6 @@ export default class Board {
         this.widthBoard = 4;
         this.squares = [];
         this.wrapper = document.querySelector('.grid');
-        this.scoreDisplay = document.querySelector('.score');
-        this.resultDisplay = document.querySelector('.result');
     }
 
     init() {
@@ -33,14 +31,14 @@ export default class Board {
 
     movingColumn(direction) {
         for (let i = 0; i < this.widthBoard; i++) {
-            this.fillColumn(i, direction === 'up', direction === 'down');
+            this.fillColumn(i, direction === 'up');
         }
     }
 
     movingRow(direction) {
         for (let i = 0; i < this.widthBoard * this.widthBoard; i++) {
             if (i % 4 === 0) {
-                this.fillRow(i, direction === 'left', direction === 'right');
+                this.fillRow(i, direction === 'left');
             }
         }
     }
@@ -83,7 +81,7 @@ export default class Board {
     }
 
     combineColumn() {
-        for (let i = 15; i >= 4; i--) {
+        for (let i = 15; i >= this.widthBoard; i--) {
             if ((this.squares[i].getValue() === this.squares[i - this.widthBoard].getValue()) && this.squares[i].getValue() !== '') {
                 const combinedTotal = parseInt(this.squares[i].getValue()) + parseInt(this.squares[i - this.widthBoard].getValue());
                 

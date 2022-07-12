@@ -6,6 +6,9 @@
 
 import Board from './board.js';
 
+export const scoreDisplay = document.querySelector('.score');
+export const resultDisplay = document.querySelector('.result');
+
 // GameManager отвечает за общую игровую логику, начать игру, проследить не окончена ли игра, есть ли победитель и подобная логика
 class GameManager {
     constructor() {
@@ -16,7 +19,7 @@ class GameManager {
 
     init() {
         // eslint-disable-next-line no-use-before-define
-        this.board = importBoard;
+        this.board = new Board();
         this.board.init();
         this.board.generateNewCell();
         this.board.generateNewCell();
@@ -24,20 +27,20 @@ class GameManager {
     }
 
     clickControl(event) {
-        if (event.key === 'ArrowUp') {
-            this.board.movingColumn('up');
+        if (event.key === 'up') {
+            this.board.movingColumn();
             this.board.combineColumn();
             this.board.generateNewCell();
-        } else if (event.key === 'ArrowDown') {
+        } else if (event.key === 'down') {
             this.board.movingColumn('down');
             this.board.combineColumn();
             this.board.generateNewCell();
-        } else if (event.key === 'ArrowRight') {
+        } else if (event.key === 'right') {
             this.board.movingRow('right');
             this.board.combineRow();
             this.board.generateNewCell();
-        } else if (event.key === 'ArrowLeft') {
-            this.board.movingRow('left');
+        } else if (event.key === 'left') {
+            this.board.movingRow();
             this.board.combineRow();
             this.board.generateNewCell();
         }
@@ -58,8 +61,6 @@ class GameManager {
         }
     }
 }
-
-const importBoard = new Board();
 
 const gameStart = new GameManager();
 gameStart.init();
