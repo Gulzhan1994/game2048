@@ -1,9 +1,3 @@
-// // Нажимаем кнопку страт или новая игра
-// // В поле появляется цифры две цифры одинаковые;
-// // с помощью нажатием кнопки (право и влево, вверх и вниз) перемещаем цифры в поле игры;
-// // одинаковые цифры суммируя свои значения превращается в одну;
-// // Если в игровой поле невозможно совершить ход то тогда игра закончиться с поражением и выйдет окно с сообщением что Вы проиграли!
-
 import Board from './board.js';
 
 export const scoreDisplay = document.querySelector('.score');
@@ -18,7 +12,6 @@ class GameManager {
     }
 
     init() {
-        // eslint-disable-next-line no-use-before-define
         this.board = new Board();
         this.board.init();
         this.board.generateNewCell();
