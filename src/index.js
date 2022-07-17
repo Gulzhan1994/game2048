@@ -10,7 +10,6 @@ class GameManager {
         this.isGameOver = false;
         this.board = null;
     }
-
     init() {
         this.board = new Board();
         this.board.init();
@@ -18,7 +17,6 @@ class GameManager {
         this.board.generateNewCell();
         document.addEventListener('keyup', this.clickControl.bind(this));
     }
-
     clickControl(event) {
         if (event.key === 'ArrowUp') {
             this.board.movingColumn('up');
@@ -38,7 +36,6 @@ class GameManager {
             this.board.generateNewCell();
         }
     }
-
     checkForGameOver() {
         const zeros = 0;
         for (let i = 0; i < this.squares.length; i++) {
@@ -46,7 +43,6 @@ class GameManager {
                 alert('You win!');
                 document.removeEventListener('keyup', this.clickControl.bind(this));
             }
-
             if (zeros === 0) {
                 resultDisplay.innerHTML = 'You lose!';
                 document.removeEventListener('keyup', this.clickControl.bind(this));
